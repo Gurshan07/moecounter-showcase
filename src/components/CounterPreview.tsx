@@ -14,29 +14,27 @@ const CounterPreview = ({ number, length }: CounterPreviewProps) => {
     setKey(prev => prev + 1);
   }, [number, length]);
 
-  // Calculate width based on length - each character is roughly 45px wide
-  const iframeWidth = Math.min(length * 45, 600);
+  // Calculate width based on length - each character is roughly 50px wide
+  const iframeWidth = Math.min(length * 55, 700);
 
   return (
-    <div className="flex flex-col items-center gap-4">
-      <div className="p-4 rounded-xl card-gradient border border-border animate-pulse-glow">
+    <div className="flex flex-col items-center gap-4 w-full">
+      <div className="p-6 rounded-xl card-gradient border border-border animate-pulse-glow">
         <iframe
           key={key}
           src={apiUrl}
           title="MoeCounter Preview"
           width={iframeWidth}
-          height={50}
+          height={80}
           className="border-0 block"
           scrolling="no"
           style={{ 
             background: 'transparent',
-            overflow: 'hidden',
-            transform: 'scale(0.9)',
-            transformOrigin: 'center'
+            overflow: 'hidden'
           }}
         />
       </div>
-      <p className="text-xs text-muted-foreground">Live preview updates as you change values</p>
+      <p className="text-sm text-muted-foreground">Live preview updates as you change values</p>
     </div>
   );
 };

@@ -37,42 +37,36 @@ const Index = () => {
         {/* Interactive Demo Section */}
         <section className="py-12 md:py-16">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-                {/* Preview Side */}
-                <div className="order-1 md:order-1">
-                  <div className="sticky top-24">
-                    <h2 className="text-2xl font-semibold mb-6 text-foreground">
-                      Live Preview
-                    </h2>
-                    <CounterPreview number={number} length={length} />
-                  </div>
+            <div className="max-w-4xl mx-auto space-y-10">
+              {/* Live Preview - Full Width Row */}
+              <div className="text-center">
+                <h2 className="text-2xl font-semibold mb-6 text-foreground">
+                  Live Preview
+                </h2>
+                <CounterPreview number={number} length={length} />
+              </div>
+
+              {/* Controls Row */}
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="p-6 rounded-xl card-gradient border border-border">
+                  <h2 className="text-lg font-semibold mb-4 text-foreground">
+                    Customize
+                  </h2>
+                  <Controls
+                    number={number}
+                    setNumber={setNumber}
+                    length={length}
+                    setLength={setLength}
+                  />
                 </div>
 
-                {/* Controls Side */}
-                <div className="order-2 md:order-2 space-y-8">
-                  <div>
-                    <h2 className="text-2xl font-semibold mb-6 text-foreground">
-                      Customize
-                    </h2>
-                    <div className="p-6 rounded-xl card-gradient border border-border">
-                      <Controls
-                        number={number}
-                        setNumber={setNumber}
-                        length={length}
-                        setLength={setLength}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="p-6 rounded-xl card-gradient border border-border">
-                    <UrlDisplay number={number} length={length} />
-                  </div>
+                <div className="p-6 rounded-xl card-gradient border border-border">
+                  <UrlDisplay number={number} length={length} />
                 </div>
               </div>
 
               {/* Code Examples */}
-              <div className="mt-12 p-6 rounded-xl card-gradient border border-border">
+              <div className="p-6 rounded-xl card-gradient border border-border">
                 <CodeExamples number={number} length={length} />
               </div>
             </div>
