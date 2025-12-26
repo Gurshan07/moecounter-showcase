@@ -57,7 +57,7 @@ const CodeExamples = ({ number, length }: CodeExamplesProps) => {
               </Button>
             </div>
             <pre className="p-3 rounded-lg bg-secondary border border-border overflow-x-auto">
-              <code className="text-sm font-mono text-foreground">{example.code}</code>
+              <code className="text-xs font-mono text-foreground whitespace-pre-wrap break-all">{example.code}</code>
             </pre>
           </div>
         ))}

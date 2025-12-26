@@ -14,7 +14,7 @@ const CounterPreview = ({ number, length }: CounterPreviewProps) => {
     setKey(prev => prev + 1);
   }, [number, length]);
 
-  // Calculate width based on length - each character is roughly 50px wide
+  // Calculate width based on length - each character is roughly 55px wide
   const iframeWidth = Math.min(length * 55, 700);
 
   return (
@@ -25,7 +25,7 @@ const CounterPreview = ({ number, length }: CounterPreviewProps) => {
           src={apiUrl}
           title="MoeCounter Preview"
           width={iframeWidth}
-          height={80}
+          height={100}
           className="border-0 block"
           scrolling="no"
           style={{ 

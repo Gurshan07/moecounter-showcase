@@ -21,10 +21,10 @@ const UrlDisplay = ({ number, length }: UrlDisplayProps) => {
   };
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-3" id="generated-url">
       <h3 className="text-sm font-medium text-foreground">Generated API URL</h3>
       <div className="flex items-center gap-2">
-        <code className="flex-1 p-3 rounded-lg bg-secondary border border-border text-primary text-sm font-mono overflow-x-auto">
+        <code className="flex-1 p-3 rounded-lg bg-secondary border border-border text-primary text-xs font-mono break-all">
           {apiUrl}
         </code>
         <Button
