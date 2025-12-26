@@ -14,7 +14,7 @@ const CounterPreview = ({ number, length }: CounterPreviewProps) => {
     setKey(prev => prev + 1);
   }, [number, length]);
 
-  const width = length * 55;
+  const width = length * 45;
 
   return (
     <div className="flex flex-col items-center gap-4 w-full">
@@ -24,7 +24,7 @@ const CounterPreview = ({ number, length }: CounterPreviewProps) => {
           src={apiUrl}
           title="MoeCounter Preview"
           width={width}
-          height={100}
+          height={150}
           className="border-0 block"
           scrolling="no"
           style={{ 
