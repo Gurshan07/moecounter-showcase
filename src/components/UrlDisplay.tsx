@@ -21,21 +21,28 @@ const UrlDisplay = ({ number, length }: UrlDisplayProps) => {
   };
 
   return (
-    <div className="space-y-3" id="generated-url">
-      <h3 className="text-sm font-medium text-foreground">Generated API URL</h3>
-      <div className="flex items-center gap-2">
-        <code className="flex-1 p-3 rounded-lg bg-secondary border border-border text-primary text-xs font-mono break-all">
-          {apiUrl}
-        </code>
-        <Button
-          variant="outline"
-          size="icon"
-          onClick={copyToClipboard}
-          className="shrink-0 border-border hover:bg-primary hover:text-primary-foreground transition-colors"
-        >
-          {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-        </Button>
-      </div>
+    <div className="space-y-4" id="generated-url">
+      <h2 className="text-lg font-semibold text-foreground">Generated API URL</h2>
+      <code className="block p-4 rounded-lg bg-secondary border border-border text-primary text-sm font-mono break-all leading-relaxed">
+        {apiUrl}
+      </code>
+      <Button
+        variant="outline"
+        onClick={copyToClipboard}
+        className="w-full border-border hover:bg-primary hover:text-primary-foreground transition-colors text-base py-6"
+      >
+        {copied ? (
+          <>
+            <Check className="h-5 w-5 mr-2" />
+            Copied!
+          </>
+        ) : (
+          <>
+            <Copy className="h-5 w-5 mr-2" />
+            Copy URL
+          </>
+        )}
+      </Button>
     </div>
   );
 };

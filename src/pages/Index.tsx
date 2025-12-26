@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+
 import CounterPreview from "@/components/CounterPreview";
 import Controls from "@/components/Controls";
 import UrlDisplay from "@/components/UrlDisplay";
@@ -14,7 +14,7 @@ const Index = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      
+
       <main className="flex-1">
         {/* Hero Section */}
         <section className="py-16 md:py-24 relative overflow-hidden">
@@ -28,7 +28,7 @@ const Index = () => {
               <span className="gradient-text">MoeCounter</span> API
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 animate-fade-in" style={{ animationDelay: "0.2s" }}>
-              Enhance your projects with adorable anime-style counters. 
+              Enhance your projects with adorable anime-style counters.
               Perfect for visitor counters, stats displays, and more.
             </p>
           </div>
@@ -40,31 +40,27 @@ const Index = () => {
             <div className="max-w-4xl mx-auto space-y-10">
               {/* Live Preview - Full Width Row */}
               <div className="text-center">
-                <h2 className="text-2xl font-semibold mb-6 text-foreground">
-                  Live Preview
-                </h2>
                 <CounterPreview number={number} length={length} />
               </div>
 
-              {/* Controls Row */}
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="p-6 rounded-xl card-gradient border border-border">
-                  <h2 className="text-lg font-semibold mb-4 text-foreground">
-                    Customize
-                  </h2>
-                  <Controls
-                    number={number}
-                    setNumber={setNumber}
-                    length={length}
-                    setLength={setLength}
-                  />
-                </div>
+             {/* Controls Row */}
+<div className="grid md:grid-cols-2 gap-6">
+  <div className="p-6 rounded-xl card-gradient border border-border flex flex-col justify-center">
+    <h2 className="text-lg font-semibold mb-4 text-foreground">
+      Customize
+    </h2>
+    <Controls
+      number={number}
+      setNumber={setNumber}
+      length={length}
+      setLength={setLength}
+    />
+  </div>
 
-                <div className="p-6 rounded-xl card-gradient border border-border">
-                  <UrlDisplay number={number} length={length} />
-                </div>
-              </div>
-
+  <div className="p-6 rounded-xl card-gradient border border-border flex flex-col justify-center">
+    <UrlDisplay number={number} length={length} />
+  </div>
+</div>
               {/* Code Examples */}
               <div className="p-6 rounded-xl card-gradient border border-border">
                 <CodeExamples number={number} length={length} />
@@ -106,7 +102,6 @@ const Index = () => {
         </section>
       </main>
 
-      <Footer />
     </div>
   );
 };
