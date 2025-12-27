@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Header from "@/components/Header";
+import BackToTop from "@/components/BackToTop";
 
 import CounterPreview from "@/components/CounterPreview";
 import Controls, { CounterMode, CounterTheme } from "@/components/Controls";
@@ -16,6 +17,7 @@ const Index = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
+      <BackToTop />
 
       <main className="flex-1">
         {/* Hero Section */}
