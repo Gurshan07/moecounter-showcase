@@ -1,18 +1,22 @@
 import { useState, useEffect } from "react";
+import { buildApiUrl } from "@/lib/buildApiUrl";
+import type { CounterMode, CounterTheme } from "@/components/Controls";
 
 interface CounterPreviewProps {
+  mode: CounterMode;
+  theme: CounterTheme;
   number: string;
   length: number;
 }
 
-const CounterPreview = ({ number, length }: CounterPreviewProps) => {
+const CounterPreview = ({ mode, theme, number, length }: CounterPreviewProps) => {
   const [key, setKey] = useState(0);
   
-  const apiUrl = `https://moecounter.jawandha-moecounter.workers.dev/api/v2/moecounter?number=${number}&length=${length}`;
+  const apiUrl = buildApiUrl({ mode, theme, number, length });
 
   useEffect(() => {
     setKey(prev => prev + 1);
-  }, [number, length]);
+  }, [mode, theme, number, length]);
 
   const width = length * 45;
 

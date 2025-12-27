@@ -2,12 +2,14 @@ import { useState } from "react";
 import Header from "@/components/Header";
 
 import CounterPreview from "@/components/CounterPreview";
-import Controls from "@/components/Controls";
+import Controls, { CounterMode, CounterTheme } from "@/components/Controls";
 import UrlDisplay from "@/components/UrlDisplay";
 import CodeExamples from "@/components/CodeExamples";
 import { Sparkles } from "lucide-react";
 
 const Index = () => {
+  const [mode, setMode] = useState<CounterMode>("custom");
+  const [theme, setTheme] = useState<CounterTheme>("default");
   const [number, setNumber] = useState("1234567890");
   const [length, setLength] = useState(10);
 
@@ -40,7 +42,7 @@ const Index = () => {
             <div className="max-w-4xl mx-auto space-y-10">
               {/* Live Preview - Full Width Row */}
               <div className="text-center">
-                <CounterPreview number={number} length={length} />
+                <CounterPreview mode={mode} theme={theme} number={number} length={length} />
               </div>
 
              {/* Controls Row */}
@@ -50,6 +52,10 @@ const Index = () => {
       Customize
     </h2>
     <Controls
+      mode={mode}
+      setMode={setMode}
+      theme={theme}
+      setTheme={setTheme}
       number={number}
       setNumber={setNumber}
       length={length}
@@ -58,12 +64,12 @@ const Index = () => {
   </div>
 
   <div className="p-6 rounded-xl card-gradient border border-border flex flex-col justify-center">
-    <UrlDisplay number={number} length={length} />
+    <UrlDisplay mode={mode} theme={theme} number={number} length={length} />
   </div>
 </div>
               {/* Code Examples */}
               <div className="p-6 rounded-xl card-gradient border border-border">
-                <CodeExamples number={number} length={length} />
+                <CodeExamples mode={mode} theme={theme} number={number} length={length} />
               </div>
             </div>
           </div>
@@ -83,17 +89,19 @@ const Index = () => {
                 </div>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <h3 className="text-sm font-medium text-primary mb-2">Parameters</h3>
+                    <h3 className="text-sm font-medium text-primary mb-2">Endpoints</h3>
                     <ul className="space-y-2 text-sm text-muted-foreground">
-                      <li><code className="text-foreground">number</code> - The number to display</li>
-                      <li><code className="text-foreground">length</code> - Number of digits (pads with zeros)</li>
+                      <li><code className="text-foreground">/</code> - Static read or custom number</li>
+                      <li><code className="text-foreground">/increment</code> - Increment counter by 1</li>
                     </ul>
                   </div>
                   <div>
-                    <h3 className="text-sm font-medium text-primary mb-2">Response</h3>
-                    <p className="text-sm text-muted-foreground">
-                      Returns an SVG/GIF image of cute anime characters representing each digit.
-                    </p>
+                    <h3 className="text-sm font-medium text-primary mb-2">Parameters</h3>
+                    <ul className="space-y-2 text-sm text-muted-foreground">
+                      <li><code className="text-foreground">theme</code> - default, musume</li>
+                      <li><code className="text-foreground">length</code> - Number of digits</li>
+                      <li><code className="text-foreground">number</code> - Custom number (optional)</li>
+                    </ul>
                   </div>
                 </div>
               </div>

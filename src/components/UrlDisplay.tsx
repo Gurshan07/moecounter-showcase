@@ -2,16 +2,20 @@ import { useState } from "react";
 import { Copy, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import { buildApiUrl } from "@/lib/buildApiUrl";
+import type { CounterMode, CounterTheme } from "@/components/Controls";
 
 interface UrlDisplayProps {
+  mode: CounterMode;
+  theme: CounterTheme;
   number: string;
   length: number;
 }
 
-const UrlDisplay = ({ number, length }: UrlDisplayProps) => {
+const UrlDisplay = ({ mode, theme, number, length }: UrlDisplayProps) => {
   const [copied, setCopied] = useState(false);
   
-  const apiUrl = `https://moecounter.jawandha-moecounter.workers.dev/api/v2/moecounter?number=${number}&length=${length}`;
+  const apiUrl = buildApiUrl({ mode, theme, number, length });
 
   const copyToClipboard = async () => {
     await navigator.clipboard.writeText(apiUrl);
