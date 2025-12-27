@@ -27,18 +27,21 @@ const BackToTop = () => {
     setIsAnimating(true);
     setStage(2);
     
+    // Slowed down by 2.5x: 300ms -> 750ms
     setTimeout(() => {
       setStage(3);
       
+      // Slowed down by 2.5x: 1000ms -> 2500ms
       setTimeout(() => {
         window.scrollTo({ top: 0, behavior: "smooth" });
         
+        // Slowed down by 2.5x: 500ms -> 1250ms
         setTimeout(() => {
           setIsAnimating(false);
           setStage(1);
-        }, 500);
-      }, 1000);
-    }, 300);
+        }, 1250);
+      }, 2500);
+    }, 750);
   };
 
   if (!isVisible) return null;
@@ -69,16 +72,16 @@ const BackToTop = () => {
   return (
     <button
       onClick={handleClick}
-      className={`fixed bottom-6 right-6 z-50 cursor-pointer transition-all duration-300 hover:scale-110 ${
+      className={`fixed bottom-12 right-6 z-50 cursor-pointer transition-all duration-700 hover:scale-110 ${
         isVisible ? "animate-fade-in" : "opacity-0 pointer-events-none"
       }`}
       aria-label="Back to top"
     >
-      <div className="w-20 h-20 overflow-hidden relative">
+      <div className="w-[120px] h-[120px] overflow-hidden relative">
         <img
           src={backToTopImage}
           alt="Back to top"
-          className="w-full transition-transform duration-300 ease-out"
+          className="w-full transition-transform duration-700 ease-out"
           style={{
             clipPath: getClipPath(),
             transform: getTransform(),

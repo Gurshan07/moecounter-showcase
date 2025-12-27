@@ -104,17 +104,15 @@ const CodeExamples = ({ mode, theme, number, length }: CodeExamplesProps) => {
                 <span className="text-sm font-medium text-primary">{modeExample.title}</span>
               </div>
               <p className="text-xs text-muted-foreground">{modeExample.description}</p>
-              <div className="space-y-3">
+              <div className="space-y-4">
                 {modeExample.examples.map((ex) => (
                   <div key={ex.label} className="space-y-2">
                     <span className="text-xs text-muted-foreground">{ex.label}:</span>
-                    <div className="flex items-center gap-3 p-2 rounded-lg bg-secondary/50 border border-border">
-                      <img 
-                        src={ex.url} 
-                        alt={`${modeExample.title} counter preview`}
-                        className="h-8"
-                      />
-                    </div>
+                    <img 
+                      src={ex.url} 
+                      alt={`${modeExample.title} counter preview`}
+                      className="h-10"
+                    />
                     <pre className="p-2 rounded-lg bg-secondary border border-border overflow-x-auto">
                       <code className="text-xs font-mono text-foreground whitespace-pre-wrap break-all">{ex.url}</code>
                     </pre>
