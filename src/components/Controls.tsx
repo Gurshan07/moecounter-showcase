@@ -65,7 +65,7 @@ const Controls = ({
         <p className="text-sm text-muted-foreground">
           {mode === "static" && "Reads counter without changing the value"}
           {mode === "increment" && "Increments counter by 1 each request"}
-          {mode === "custom" && "Display a custom number (no KV storage)"}
+          {mode === "custom" && "Display a custom number"}
         </p>
       </div>
 

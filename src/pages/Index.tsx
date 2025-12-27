@@ -1,21 +1,32 @@
 import { useState } from "react";
+import { Copy, Check, Sparkles } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 import Header from "@/components/Header";
 import BackToTop from "@/components/BackToTop";
-
 import CounterPreview from "@/components/CounterPreview";
 import Controls, { CounterMode, CounterTheme } from "@/components/Controls";
 import UrlDisplay from "@/components/UrlDisplay";
 import CodeExamples from "@/components/CodeExamples";
-import { Sparkles } from "lucide-react";
 
 const Index = () => {
   const [mode, setMode] = useState<CounterMode>("custom");
   const [theme, setTheme] = useState<CounterTheme>("default");
   const [number, setNumber] = useState("1234567890");
   const [length, setLength] = useState(10);
+  const [baseUrlCopied, setBaseUrlCopied] = useState(false);
+
+  const baseUrl = "https://moecounter.jawandha-moecounter.workers.dev/api/v2/moecounter";
+
+  const copyBaseUrl = async () => {
+    await navigator.clipboard.writeText(baseUrl);
+    setBaseUrlCopied(true);
+    toast.success("Base URL copied!");
+    setTimeout(() => setBaseUrlCopied(false), 2000);
+  };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col select-none">
       <Header />
       <BackToTop />
 
@@ -48,27 +59,28 @@ const Index = () => {
               </div>
 
              {/* Controls Row */}
-<div className="grid md:grid-cols-2 gap-6">
-  <div className="p-6 rounded-xl card-gradient border border-border flex flex-col justify-center">
-    <h2 className="text-lg font-semibold mb-4 text-foreground">
-      Customize
-    </h2>
-    <Controls
-      mode={mode}
-      setMode={setMode}
-      theme={theme}
-      setTheme={setTheme}
-      number={number}
-      setNumber={setNumber}
-      length={length}
-      setLength={setLength}
-    />
-  </div>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="p-6 rounded-xl card-gradient border border-border flex flex-col justify-center">
+                  <h2 className="text-lg font-semibold mb-4 text-foreground">
+                    Customize
+                  </h2>
+                  <Controls
+                    mode={mode}
+                    setMode={setMode}
+                    theme={theme}
+                    setTheme={setTheme}
+                    number={number}
+                    setNumber={setNumber}
+                    length={length}
+                    setLength={setLength}
+                  />
+                </div>
 
-  <div className="p-6 rounded-xl card-gradient border border-border flex flex-col justify-center">
-    <UrlDisplay mode={mode} theme={theme} number={number} length={length} />
-  </div>
-</div>
+                <div className="p-6 rounded-xl card-gradient border border-border flex flex-col justify-center">
+                  <UrlDisplay mode={mode} theme={theme} number={number} length={length} />
+                </div>
+              </div>
+
               {/* Code Examples */}
               <div className="p-6 rounded-xl card-gradient border border-border">
                 <CodeExamples mode={mode} theme={theme} number={number} length={length} />
@@ -85,9 +97,23 @@ const Index = () => {
               <div className="p-6 rounded-xl card-gradient border border-border space-y-4">
                 <div>
                   <h3 className="text-sm font-medium text-primary mb-2">Base URL</h3>
-                  <code className="block p-3 rounded-lg bg-secondary text-sm font-mono text-foreground">
-                    https://moecounter.jawandha-moecounter.workers.dev/api/v2/moecounter
-                  </code>
+                  <div className="relative">
+                    <code className="block p-3 pr-10 rounded-lg bg-secondary text-sm font-mono text-foreground">
+                      {baseUrl}
+                    </code>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={copyBaseUrl}
+                      className="absolute top-1 right-1 h-7 px-2 text-muted-foreground hover:text-foreground"
+                    >
+                      {baseUrlCopied ? (
+                        <Check className="h-3.5 w-3.5" />
+                      ) : (
+                        <Copy className="h-3.5 w-3.5" />
+                      )}
+                    </Button>
+                  </div>
                 </div>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>

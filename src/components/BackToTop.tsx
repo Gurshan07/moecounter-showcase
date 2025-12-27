@@ -40,7 +40,7 @@ const BackToTop = () => {
           setIsAnimating(false);
           setStage(1);
         }, 1250);
-      }, 2500);
+      }, 1500);
     }, 750);
   };
 
@@ -70,13 +70,13 @@ const BackToTop = () => {
   };
 
   return (
-    <button
-      onClick={handleClick}
-      className={`fixed bottom-12 right-6 z-50 cursor-pointer transition-all duration-700 hover:scale-110 ${
-        isVisible ? "animate-fade-in" : "opacity-0 pointer-events-none"
-      }`}
-      aria-label="Back to top"
-    >
+   <button
+  onClick={handleClick}
+  className={`fixed bottom-0 right-0 z-50 cursor-pointer transition-all duration-700 hover:scale-150 ${
+    isVisible ? "animate-fade-in" : "opacity-0 pointer-events-none"
+  }`}
+  aria-label="Back to top"
+>
       <div className="w-[120px] h-[120px] overflow-hidden relative">
         <img
           src={backToTopImage}

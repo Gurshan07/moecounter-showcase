@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Loader2 } from "lucide-react";
 import { buildApiUrl } from "@/lib/buildApiUrl";
 import type { CounterMode, CounterTheme } from "@/components/Controls";
 
@@ -11,18 +12,29 @@ interface CounterPreviewProps {
 
 const CounterPreview = ({ mode, theme, number, length }: CounterPreviewProps) => {
   const [key, setKey] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
   
   const apiUrl = buildApiUrl({ mode, theme, number, length });
 
   useEffect(() => {
+    setIsLoading(true);
     setKey(prev => prev + 1);
   }, [mode, theme, number, length]);
+
+  const handleIframeLoad = () => {
+    setIsLoading(false);
+  };
 
   const width = length * 45;
 
   return (
     <div className="flex flex-col items-center gap-4 w-full">
-      <div className="flex items-center justify-center w-full min-h-[180px] overflow-x-auto">
+      <div className="flex items-center justify-center w-full min-h-[180px] relative" style={{ overflow: 'hidden' }}>
+        {isLoading && (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <Loader2 className="h-8 w-8 animate-spin text-primary" />
+          </div>
+        )}
         <iframe
           key={key}
           src={apiUrl}
@@ -31,9 +43,12 @@ const CounterPreview = ({ mode, theme, number, length }: CounterPreviewProps) =>
           height={150}
           className="border-0 block"
           scrolling="no"
+          onLoad={handleIframeLoad}
           style={{ 
             background: 'transparent',
-            overflow: 'hidden'
+            overflow: 'hidden',
+            opacity: isLoading ? 0 : 1,
+            transition: 'opacity 0.3s ease-in-out'
           }}
         />
       </div>
