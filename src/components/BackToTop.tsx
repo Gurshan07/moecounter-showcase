@@ -40,7 +40,7 @@ const BackToTop = () => {
           setIsAnimating(false);
           setStage(1);
         }, 1250);
-      }, 1500);
+      }, 750);
     }, 750);
   };
 

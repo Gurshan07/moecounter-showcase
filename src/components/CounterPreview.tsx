@@ -27,14 +27,14 @@ const CounterPreview = ({ mode, theme, number, length }: CounterPreviewProps) =>
 
   const measureGifDimensions = async () => {
     try {
-      // Fetch a single digit to measure its dimensions
-      const measureUrl = buildApiUrl({ mode, theme, number: "0", length: 1 });
+      // Fetch the actual full counter to measure its real dimensions
+      const measureUrl = buildApiUrl({ mode, theme, number: number || "0".repeat(length), length });
       
       // The API returns HTML with img tags, so we need to parse it
       const response = await fetch(measureUrl);
       const html = await response.text();
       
-      // Extract image src from the HTML
+      // Extract first image src from the HTML to get single character dimensions
       const imgMatch = html.match(/<img[^>]+src="([^"]+)"/);
       
       if (imgMatch && imgMatch[1]) {
@@ -45,12 +45,14 @@ const CounterPreview = ({ mode, theme, number, length }: CounterPreviewProps) =>
         
         await new Promise((resolve, reject) => {
           img.onload = () => {
-            // Calculate total dimensions based on single character
             const charWidth = img.naturalWidth;
             const charHeight = img.naturalHeight;
             
+            // Add some spacing buffer between characters (about 5% per character gap)
+            const totalWidth = (charWidth * length) + (length * 2);
+            
             setDimensions({
-              width: charWidth * length,
+              width: totalWidth,
               height: charHeight
             });
             setIsMeasuring(false);
@@ -97,8 +99,8 @@ const CounterPreview = ({ mode, theme, number, length }: CounterPreviewProps) =>
   const displayHeight = dimensions.height || 120;
   const displayWidth = dimensions.width || length * 60;
   
-  // Calculate scale for mobile responsiveness
-  const maxWidth = typeof window !== 'undefined' ? window.innerWidth - 48 : 500; // 48px for padding
+  // Calculate scale for mobile responsiveness with more generous padding
+  const maxWidth = typeof window !== 'undefined' ? window.innerWidth - 64 : 500; // 64px for padding (32px each side)
   const scale = displayWidth > maxWidth ? maxWidth / displayWidth : 1;
   const scaledHeight = displayHeight * scale;
 
