@@ -26,7 +26,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col select-none">
+    <div className="min-h-screen flex flex-col select-none" >
       <Header />
       <BackToTop />
 
@@ -90,7 +90,7 @@ const Index = () => {
         </section>
 
         {/* API Info Section */}
-        <section className="py-12 md:py-16 bg-card/30">
+        <section className="py-12 md:py-16 bg-card/30" id="generated-url">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-2xl font-semibold mb-6 text-foreground">API Reference</h2>
@@ -126,7 +126,7 @@ const Index = () => {
                   <div className="min-w-0">
                     <h3 className="text-sm font-medium text-primary mb-2">Parameters</h3>
                     <ul className="space-y-2 text-sm text-muted-foreground">
-                      <li><code className="text-foreground break-all">theme</code> - default, musume, gelbooru, asoul, booru-jaypee, booru-lisu, booru-lewd, booru-qualityhentais, booru-smtg</li>
+                      <li><code className="text-foreground break-all">theme</code> - default, uma, gelbooru, asoul, booru-jaypee, booru-lisu, booru-lewd, booru-qualityhentais, booru-smtg</li>
                       <li><code className="text-foreground">length</code> - Number of digits</li>
                       <li><code className="text-foreground">number</code> - Custom number (optional)</li>
                     </ul>

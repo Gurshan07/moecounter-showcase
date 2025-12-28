@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Copy, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
@@ -15,8 +15,18 @@ interface CodeExamplesProps {
 
 const CodeExamples = ({ mode, theme, number, length }: CodeExamplesProps) => {
   const [copiedIndex, setCopiedIndex] = useState<number | string | null>(null);
+  const [shownPreviews, setShownPreviews] = useState<Set<string>>(new Set());
   
   const apiUrl = buildApiUrl({ mode, theme, number, length });
+
+  // Reset shown previews when theme changes
+  useEffect(() => {
+    setShownPreviews(new Set());
+  }, [theme]);
+
+  const handlePreviewShown = (key: string) => {
+    setShownPreviews(prev => new Set([...prev, key]));
+  };
 
   const examples = [
     {
@@ -38,23 +48,21 @@ const CodeExamples = ({ mode, theme, number, length }: CodeExamplesProps) => {
       title: "Static (Read-Only)",
       description: "Reads counter value without incrementing. Perfect for displaying a fixed count.",
       examples: [
-        { label: "Basic", mode: "static" as CounterMode, length: 7 },
-        { label: "With Length", mode: "static" as CounterMode, length: 6 },
+        { label: "Basic", mode: "static" as CounterMode, length: 7 }
       ],
     },
     {
       title: "Increment (+1 Each Request)",
       description: "Increments counter by 1 on each request. Ideal for visitor counters.",
       examples: [
-        { label: "Basic", mode: "increment" as CounterMode, length: 7 },
-        { label: "With Length", mode: "increment" as CounterMode, length: 6 },
+        { label: "Basic", mode: "increment" as CounterMode, length: 7 }
       ],
     },
     {
       title: "Custom Number (Manual)",
       description: "Display any number without touching the counter. Great for custom displays.",
       examples: [
-        { label: "Example", mode: "manual" as CounterMode, number: "1234567890", length: 10 },
+        { label: "Example", mode: "custom" as CounterMode, number: "0123456789", length: 10 },
       ],
     },
   ];
@@ -117,32 +125,35 @@ const CodeExamples = ({ mode, theme, number, length }: CodeExamplesProps) => {
                     <div key={ex.label} className="space-y-2 p-3 rounded-lg bg-secondary/30 border border-border/50">
                       <span className="text-xs font-medium text-muted-foreground">{ex.label}:</span>
                       
-                      {/* Lazy load preview - only loads on Show click */}
                       <div className="flex justify-center overflow-hidden">
                         <LazyCounterPreview 
                           mode={ex.mode}
                           theme={theme}
                           number={ex.number || ""}
                           length={ex.length}
+                          onShow={() => handlePreviewShown(copyKey)}
                         />
                       </div>
-                      <div className="relative">
-                        <pre className="p-2 pr-8 rounded-lg bg-secondary border border-border overflow-x-auto">
-                          <code className="text-xs font-mono text-foreground break-all">{exampleUrl}</code>
-                        </pre>
+                      
+                      {shownPreviews.has(copyKey) && (
                         <Button
-                          variant="ghost"
-                          size="sm"
+                          variant="outline"
                           onClick={() => copyCode(exampleUrl, copyKey)}
-                          className="absolute top-1 right-1 h-6 px-1 text-muted-foreground hover:text-foreground"
+                          className="w-full border-border hover:bg-primary hover:text-primary-foreground transition-colors text-base py-6"
                         >
                           {copiedIndex === copyKey ? (
-                            <Check className="h-3 w-3" />
+                            <>
+                              <Check className="h-5 w-5 mr-2" />
+                              Copied!
+                            </>
                           ) : (
-                            <Copy className="h-3 w-3" />
+                            <>
+                              <Copy className="h-5 w-5 mr-2" />
+                              Copy URL
+                            </>
                           )}
                         </Button>
-                      </div>
+                      )}
                     </div>
                   );
                 })}

@@ -25,7 +25,7 @@ const UrlDisplay = ({ mode, theme, number, length }: UrlDisplayProps) => {
   };
 
   return (
-    <div className="space-y-4" id="generated-url">
+    <div className="space-y-4" >
       <h2 className="text-lg font-semibold text-foreground">Generated API URL</h2>
       <code className="block p-4 rounded-lg bg-secondary border border-border text-primary text-sm font-mono break-all leading-relaxed">
         {apiUrl}
