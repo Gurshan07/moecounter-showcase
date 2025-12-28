@@ -25,8 +25,8 @@ const CounterPreview = ({ mode, theme, number, length }: CounterPreviewProps) =>
     setIsLoading(false);
   };
 
-  const width = length * 45;
-  const height = 180;
+  const width = Math.min(length * 45, 400);
+  const height = 120;
 
   return (
     <div className="flex flex-col items-center gap-4 w-full">
