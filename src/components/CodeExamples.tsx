@@ -3,7 +3,7 @@ import { Copy, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { buildApiUrl } from "@/lib/buildApiUrl";
-import CounterPreview from "@/components/CounterPreview";
+import LazyCounterPreview from "@/components/LazyCounterPreview";
 import type { CounterMode, CounterTheme } from "@/components/Controls";
 
 interface CodeExamplesProps {
@@ -117,9 +117,9 @@ const CodeExamples = ({ mode, theme, number, length }: CodeExamplesProps) => {
                     <div key={ex.label} className="space-y-2 p-3 rounded-lg bg-secondary/30 border border-border/50">
                       <span className="text-xs font-medium text-muted-foreground">{ex.label}:</span>
                       
-                      {/* Use CounterPreview component - full width per row */}
+                      {/* Lazy load preview - only loads on Show click */}
                       <div className="flex justify-center overflow-hidden">
-                        <CounterPreview 
+                        <LazyCounterPreview 
                           mode={ex.mode}
                           theme={theme}
                           number={ex.number || ""}
