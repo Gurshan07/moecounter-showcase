@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/select";
 
 export type CounterMode = "static" | "increment" | "custom";
-export type CounterTheme = "default" | "musume" | "gelbooru";
+export type CounterTheme = "default" | "musume" | "gelbooru" | "asoul" | "booru-jaypee" | "booru-lisu" | "booru-lewd" | "booru-qualityhentais" | "booru-smtg";
 
 interface ControlsProps {
   mode: CounterMode;
@@ -82,6 +82,12 @@ const Controls = ({
             <SelectItem value="default">Default</SelectItem>
             <SelectItem value="musume">Musume</SelectItem>
             <SelectItem value="gelbooru">Gelbooru</SelectItem>
+            <SelectItem value="asoul">Asoul</SelectItem>
+            <SelectItem value="booru-jaypee">Booru Jaypee</SelectItem>
+            <SelectItem value="booru-lisu">Booru Lisu</SelectItem>
+            <SelectItem value="booru-lewd">Booru Lewd</SelectItem>
+            <SelectItem value="booru-qualityhentais">Booru Quality Hentais</SelectItem>
+            <SelectItem value="booru-smtg">Booru SMTG</SelectItem>
           </SelectContent>
         </Select>
       </div>

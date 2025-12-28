@@ -8,10 +8,9 @@ interface CounterPreviewProps {
   theme: CounterTheme;
   number: string;
   length: number;
-  compact?: boolean;
 }
 
-const CounterPreview = ({ mode, theme, number, length, compact = false }: CounterPreviewProps) => {
+const CounterPreview = ({ mode, theme, number, length }: CounterPreviewProps) => {
   const [key, setKey] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   
@@ -26,29 +25,14 @@ const CounterPreview = ({ mode, theme, number, length, compact = false }: Counte
     setIsLoading(false);
   };
 
-  // Different themes have different sizes - gelbooru is taller
-  const getThemeDimensions = () => {
-    if (theme === "gelbooru") {
-      return { 
-        width: compact ? length * 30 : length * 45, 
-        height: compact ? 100 : 150,
-        minHeight: compact ? 100 : 150
-      };
-    }
-    return { 
-      width: compact ? length * 30 : length * 45, 
-      height: compact ? 100 : 150,
-      minHeight: compact ? 100 : 150
-    };
-  };
-
-  const { width, height, minHeight } = getThemeDimensions();
+  const width = length * 45;
+  const height = 180;
 
   return (
     <div className="flex flex-col items-center gap-4 w-full">
       <div 
         className="flex items-center justify-center w-full relative overflow-hidden"
-        style={{ minHeight, maxHeight: compact ? 120 : 180 }}
+        style={{ minHeight: height }}
       >
         {isLoading && (
           <div className="absolute inset-0 flex items-center justify-center">
@@ -68,9 +52,7 @@ const CounterPreview = ({ mode, theme, number, length, compact = false }: Counte
             background: 'transparent',
             overflow: 'hidden',
             opacity: isLoading ? 0 : 1,
-            transition: 'opacity 0.3s ease-in-out',
-            transform: compact ? 'scale(0.85)' : 'scale(1)',
-            transformOrigin: 'center center'
+            transition: 'opacity 0.3s ease-in-out'
           }}
         />
       </div>
