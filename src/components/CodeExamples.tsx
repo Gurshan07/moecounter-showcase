@@ -39,7 +39,7 @@ const CodeExamples = ({ mode, theme, number, length }: CodeExamplesProps) => {
     },
     {
       title: "GitHub README",
-      code: `<!-- Add to your README.md -->\n<p align="center">\n  <img src="${apiUrl}" alt="Visitor Counter" />\n</p>`,
+      code: `\n<p align="center">\n  <img src="${apiUrl}" alt="Visitor Counter" />\n</p>`,
     },
   ];
 
@@ -48,21 +48,14 @@ const CodeExamples = ({ mode, theme, number, length }: CodeExamplesProps) => {
       title: "Static (Read-Only)",
       description: "Reads counter value without incrementing. Perfect for displaying a fixed count.",
       examples: [
-        { label: "Basic", mode: "static" as CounterMode, length: 7 }
+        { label: "Basic", mode: "static" as CounterMode, length: 4 ,number: undefined}
       ],
     },
     {
       title: "Increment (+1 Each Request)",
       description: "Increments counter by 1 on each request. Ideal for visitor counters.",
       examples: [
-        { label: "Basic", mode: "increment" as CounterMode, length: 7 }
-      ],
-    },
-    {
-      title: "Custom Number (Manual)",
-      description: "Display any number without touching the counter. Great for custom displays.",
-      examples: [
-        { label: "Example", mode: "custom" as CounterMode, number: "0123456789", length: 10 },
+        { label: "Basic", mode: "increment" as CounterMode, length: 4 ,number: undefined}
       ],
     },
   ];
