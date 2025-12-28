@@ -117,13 +117,14 @@ const CodeExamples = ({ mode, theme, number, length }: CodeExamplesProps) => {
                     <div key={ex.label} className="space-y-2">
                       <span className="text-xs text-muted-foreground">{ex.label}:</span>
                       
-                      {/* Use CounterPreview component with smaller size for grid */}
-                      <div className="overflow-x-auto">
+                      {/* Use CounterPreview component with compact size for grid */}
+                      <div className="overflow-hidden max-h-[120px]">
                         <CounterPreview 
                           mode={ex.mode}
                           theme={theme}
                           number={ex.number || ""}
                           length={ex.length}
+                          compact
                         />
                       </div>
                       <div className="relative">
