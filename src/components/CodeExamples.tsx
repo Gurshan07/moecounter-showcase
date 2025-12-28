@@ -103,7 +103,7 @@ const CodeExamples = ({ mode, theme, number, length }: CodeExamplesProps) => {
                 <span className="text-sm font-medium text-primary">{modeExample.title}</span>
               </div>
               <p className="text-xs text-muted-foreground">{modeExample.description}</p>
-              <div className="space-y-4">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
                 {modeExample.examples.map((ex, exIndex) => {
                   const exampleUrl = buildApiUrl({ 
                     mode: ex.mode, 
@@ -117,27 +117,29 @@ const CodeExamples = ({ mode, theme, number, length }: CodeExamplesProps) => {
                     <div key={ex.label} className="space-y-2">
                       <span className="text-xs text-muted-foreground">{ex.label}:</span>
                       
-                      {/* Use CounterPreview component */}
+                      {/* Use CounterPreview component with smaller size for grid */}
+                      <div className="overflow-x-auto">
                         <CounterPreview 
                           mode={ex.mode}
                           theme={theme}
                           number={ex.number || ""}
                           length={ex.length}
-                        />                    
+                        />
+                      </div>
                       <div className="relative">
-                        <pre className="p-2 pr-10 rounded-lg bg-secondary border border-border overflow-x-auto">
-                          <code className="text-xs font-mono text-foreground whitespace-pre-wrap break-all">{exampleUrl}</code>
+                        <pre className="p-2 pr-8 rounded-lg bg-secondary border border-border overflow-x-auto">
+                          <code className="text-[10px] font-mono text-foreground break-all">{exampleUrl}</code>
                         </pre>
                         <Button
                           variant="ghost"
                           size="sm"
                           onClick={() => copyCode(exampleUrl, copyKey)}
-                          className="absolute top-1 right-1 h-7 px-2 text-muted-foreground hover:text-foreground"
+                          className="absolute top-1 right-1 h-6 px-1 text-muted-foreground hover:text-foreground"
                         >
                           {copiedIndex === copyKey ? (
-                            <Check className="h-3.5 w-3.5" />
+                            <Check className="h-3 w-3" />
                           ) : (
-                            <Copy className="h-3.5 w-3.5" />
+                            <Copy className="h-3 w-3" />
                           )}
                         </Button>
                       </div>

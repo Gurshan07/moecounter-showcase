@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/select";
 
 export type CounterMode = "static" | "increment" | "custom";
-export type CounterTheme = "default" | "musume";
+export type CounterTheme = "default" | "musume" | "gelbooru";
 
 interface ControlsProps {
   mode: CounterMode;
@@ -81,6 +81,7 @@ const Controls = ({
           <SelectContent>
             <SelectItem value="default">Default</SelectItem>
             <SelectItem value="musume">Musume</SelectItem>
+            <SelectItem value="gelbooru">Gelbooru</SelectItem>
           </SelectContent>
         </Select>
       </div>

@@ -95,10 +95,10 @@ const Index = () => {
             <div className="max-w-4xl mx-auto">
               <h2 className="text-2xl font-semibold mb-6 text-foreground">API Reference</h2>
               <div className="p-6 rounded-xl card-gradient border border-border space-y-4">
-                <div>
+                <div className="min-w-0">
                   <h3 className="text-sm font-medium text-primary mb-2">Base URL</h3>
                   <div className="relative">
-                    <code className="block p-3 pr-10 rounded-lg bg-secondary text-sm font-mono text-foreground">
+                    <code className="block p-3 pr-10 rounded-lg bg-secondary text-sm font-mono text-foreground break-all overflow-x-auto">
                       {baseUrl}
                     </code>
                     <Button
@@ -116,17 +116,17 @@ const Index = () => {
                   </div>
                 </div>
                 <div className="grid md:grid-cols-2 gap-4">
-                  <div>
+                  <div className="min-w-0">
                     <h3 className="text-sm font-medium text-primary mb-2">Endpoints</h3>
                     <ul className="space-y-2 text-sm text-muted-foreground">
-                      <li><code className="text-foreground">/</code> - Static read or custom number</li>
-                      <li><code className="text-foreground">/increment</code> - Increment counter by 1</li>
+                      <li className="break-words"><code className="text-foreground break-all">/</code> - Static read or custom number</li>
+                      <li className="break-words"><code className="text-foreground break-all">/increment</code> - Increment counter by 1</li>
                     </ul>
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <h3 className="text-sm font-medium text-primary mb-2">Parameters</h3>
                     <ul className="space-y-2 text-sm text-muted-foreground">
-                      <li><code className="text-foreground">theme</code> - default, musume</li>
+                      <li><code className="text-foreground break-all">theme</code> - default, musume, gelbooru</li>
                       <li><code className="text-foreground">length</code> - Number of digits</li>
                       <li><code className="text-foreground">number</code> - Custom number (optional)</li>
                     </ul>
