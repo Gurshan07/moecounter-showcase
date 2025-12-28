@@ -101,6 +101,11 @@ const LazyCounterPreview = ({ mode, theme, number, length, onShow }: LazyCounter
 
   const displayHeight = dimensions.height || 120;
   const displayWidth = dimensions.width || length * 60;
+  
+  // Calculate scale for mobile responsiveness
+  const maxWidth = typeof window !== 'undefined' ? window.innerWidth - 48 : 500; // 48px for padding
+  const scale = displayWidth > maxWidth ? maxWidth / displayWidth : 1;
+  const scaledHeight = displayHeight * scale;
 
   if (!isVisible) {
     return (
@@ -124,27 +129,36 @@ const LazyCounterPreview = ({ mode, theme, number, length, onShow }: LazyCounter
   return (
     <div 
       className="flex items-center justify-center w-full relative transition-all duration-300"
-      style={{ height: displayHeight + 40, minHeight: 120 }}
+      style={{ height: scaledHeight + 40, minHeight: 120 }}
     >
       {isLoading && (
         <div className="absolute inset-0 flex items-center justify-center z-10">
           <Loader2 className="h-6 w-6 animate-spin text-primary" />
         </div>
       )}
-      <iframe
-        src={apiUrl}
-        title="MoeCounter Preview"
-        width={displayWidth}
-        height={displayHeight}
-        className="border-0"
-        scrolling="no"
-        onLoad={handleIframeLoad}
-        style={{ 
-          background: 'transparent',
-          opacity: isLoading ? 0 : 1,
-          transition: 'opacity 0.3s ease-in-out'
+      <div
+        style={{
+          transform: `scale(${scale})`,
+          transformOrigin: 'center center',
+          width: displayWidth,
+          height: displayHeight
         }}
-      />
+      >
+        <iframe
+          src={apiUrl}
+          title="MoeCounter Preview"
+          width={displayWidth}
+          height={displayHeight}
+          className="border-0"
+          scrolling="no"
+          onLoad={handleIframeLoad}
+          style={{ 
+            background: 'transparent',
+            opacity: isLoading ? 0 : 1,
+            transition: 'opacity 0.3s ease-in-out'
+          }}
+        />
+      </div>
     </div>
   );
 };
