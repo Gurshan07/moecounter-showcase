@@ -103,7 +103,7 @@ const CodeExamples = ({ mode, theme, number, length }: CodeExamplesProps) => {
                 <span className="text-sm font-medium text-primary">{modeExample.title}</span>
               </div>
               <p className="text-xs text-muted-foreground">{modeExample.description}</p>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+              <div className="space-y-4">
                 {modeExample.examples.map((ex, exIndex) => {
                   const exampleUrl = buildApiUrl({ 
                     mode: ex.mode, 
@@ -114,22 +114,21 @@ const CodeExamples = ({ mode, theme, number, length }: CodeExamplesProps) => {
                   const copyKey = `${modeExample.title}-${exIndex}`;
                   
                   return (
-                    <div key={ex.label} className="space-y-2">
-                      <span className="text-xs text-muted-foreground">{ex.label}:</span>
+                    <div key={ex.label} className="space-y-2 p-3 rounded-lg bg-secondary/30 border border-border/50">
+                      <span className="text-xs font-medium text-muted-foreground">{ex.label}:</span>
                       
-                      {/* Use CounterPreview component with compact size for grid */}
-                      <div className="overflow-hidden max-h-[120px]">
+                      {/* Use CounterPreview component - full width per row */}
+                      <div className="flex justify-center overflow-hidden">
                         <CounterPreview 
                           mode={ex.mode}
                           theme={theme}
                           number={ex.number || ""}
                           length={ex.length}
-                          compact
                         />
                       </div>
                       <div className="relative">
                         <pre className="p-2 pr-8 rounded-lg bg-secondary border border-border overflow-x-auto">
-                          <code className="text-[10px] font-mono text-foreground break-all">{exampleUrl}</code>
+                          <code className="text-xs font-mono text-foreground break-all">{exampleUrl}</code>
                         </pre>
                         <Button
                           variant="ghost"

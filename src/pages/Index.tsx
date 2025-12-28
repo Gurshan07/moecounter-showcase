@@ -126,7 +126,7 @@ const Index = () => {
                   <div className="min-w-0">
                     <h3 className="text-sm font-medium text-primary mb-2">Parameters</h3>
                     <ul className="space-y-2 text-sm text-muted-foreground">
-                      <li><code className="text-foreground break-all">theme</code> - default, musume, gelbooru</li>
+                      <li><code className="text-foreground break-all">theme</code> - default, musume, gelbooru, asoul, booru-jaypee, booru-lisu, booru-lewd, booru-qualityhentais, booru-smtg</li>
                       <li><code className="text-foreground">length</code> - Number of digits</li>
                       <li><code className="text-foreground">number</code> - Custom number (optional)</li>
                     </ul>
